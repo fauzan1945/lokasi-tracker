@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pelacak Lokasi</title>
+</head>
+<body>
+  <h1>Halo! 😄</h1>
+  <p>Klik tombol untuk membagikan lokasi kamu:</p>
+  <button onclick="getLocation()">📍 Dapatkan Lokasi</button>
+
+  <div id="output" style="margin-top:20px;"></div>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          document.getElementById("output").innerHTML =
+            `<p><strong>Latitude:</strong> ${lat}</p><p><strong>Longitude:</strong> ${lon}</p>`;
+        }, function(error) {
+          alert("Gagal mendapatkan lokasi: " + error.message);
+        });
+      } else {
+        alert("Browser tidak mendukung geolokasi.");
+      }
+    }
+  </script>
+</body>
+</html>
